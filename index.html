@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Cadastros</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Cadastros</h1>
+        </header>
+
+        <!-- Mensagem de feedback -->
+        <div id="mensagem" role="alert" aria-live="polite" class="hidden"></div>
+
+        <!-- Botões de navegação -->
+        <div class="button-container">
+            <button id="btnGestao" class="btn">Gestão</button>
+            <button id="btnConsulta" class="btn">Consulta</button>
+            <button id="btnCadastrarMunicipio" class="btn">Cadastrar Município</button>
+            <button id="btnCadastrarLocalidade" class="btn">Cadastrar Localidade</button>
+            <button id="btnTransferencia" class="btn">Transferência</button>
+            <button id="btnRelatorios" class="btn">Relatórios</button>
+            <button id="btnReset" class="btn btn-reset">Resetar Página</button>
+        </div>
+
+        <!-- Formulário de cadastro de município -->
+        <section id="municipioForm" class="form-section hidden">
+            <h2>Cadastro de Município</h2>
+            <form id="formMunicipio" novalidate>
+                <fieldset>
+                    <legend>Dados do Município</legend>
+                    <div class="form-group">
+                        <label for="municipioNome">Nome do Município *</label>
+                        <input type="text" id="municipioNome" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="estadoVinculado">Vínculo com Estado *</label>
+                        <select id="estadoVinculado" required aria-required="true">
+                            <option value="">Selecione um estado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="NRSVinculado">Vínculo com o NRS</label>
+                        <select id="NRSVinculado">
+                            <option value="">Selecione o NRS</option>
+                            <option value="Centro-Leste">Centro-Leste</option>
+                            <option value="Centro-Norte">Centro-Norte</option>
+                            <option value="Extremo Sul">Extremo Sul</option>
+                            <option value="Leste">Leste</option>
+                            <option value="Norte">Norte</option>
+                            <option value="Nordeste">Nordeste</option>
+                            <option value="Oeste">Oeste</option>
+                            <option value="Sul">Sul</option>
+                            <option value="Sudoeste">Sudoeste</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="baseRegional">Base Regional *</label>
+                        <select id="baseRegional" required aria-required="true">
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar Município</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Formulário de cadastro de localidade -->
+        <section id="localidadeForm" class="form-section hidden">
+            <h2>Cadastro de Localidade</h2>
+            <form id="formLocalidade" novalidate>
+                <fieldset>
+                    <legend>Dados da Localidade</legend>
+                    <!-- Campos obrigatórios -->
+                    <div class="form-group">
+                        <label for="localidadeNome">Nome da Localidade *</label>
+                        <input type="text" id="localidadeNome" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="municipioVinculado">Vínculo com Município *</label>
+                        <select id="municipioVinculado" required aria-required="true">
+                            <option value="">Selecione um município</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" required aria-required="true">
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="classificacao">Classificação *</label>
+                        <select id="classificacao" required aria-required="true">
+                            <option value="Urbano">Urbano</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeResidentes">Quantidade de Residentes *</label>
+                        <input type="number" id="quantidadeResidentes" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeComercios">Quantidade de Comércios *</label>
+                        <input type="number" id="quantidadeComercios" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeConstrucoes">Quantidade de Outras Construções *</label>
+                        <input type="number" id="quantidadeConstrucoes" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeHabitantes">Quantidade de Habitantes *</label>
+                        <input type="number" id="quantidadeHabitantes" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadePontoEstrategico">Quantidade de Pontos Estratégicos *</label>
+                        <input type="number" id="quantidadePontoEstrategico" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeTerrenosBaldios">Quantidade de Terrenos Baldios *</label>
+                        <input type="number" id="quantidadeTerrenosBaldios" min="0" required aria-required="true" />
+                    </div>
+
+                    <!-- Infraestrutura (selects) -->
+                    <div class="form-group">
+                        <label for="possuiEnergiaEletrica">Possui Energia Elétrica *</label>
+                        <select id="possuiEnergiaEletrica" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiAguaEncanada">Possui Água Encanada *</label>
+                        <select id="possuiAguaEncanada" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiTratamentoEsgoto">Possui Tratamento de Esgoto *</label>
+                        <select id="possuiTratamentoEsgoto" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiLavanderiaColetiva">Possui Lavanderia Coletiva *</label>
+                        <select id="possuiLavanderiaColetiva" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiColetaLixo">Possui Coleta de Lixo *</label>
+                        <select id="possuiColetaLixo" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiRedeTelefonica">Possui Rede Telefônica *</label>
+                        <select id="possuiRedeTelefonica" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiInternet">Possui Internet *</label>
+                        <select id="possuiInternet" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiTransportePublico">Possui Transporte Público *</label>
+                        <select id="possuiTransportePublico" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiRuaPavimentada">Possui Rua Pavimentada *</label>
+                        <select id="possuiRuaPavimentada" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiEscolaCreche">Possui Escola/Creche *</label>
+                        <select id="possuiEscolaCreche" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiPostoSaude">Possui Posto de Saúde *</label>
+                        <select id="possuiPostoSaude" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiPACSPFS">Possui PACS/PFS *</label>
+                        <select id="possuiPACSPFS" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiAcessoPermanente">Possui Acesso Permanente *</label>
+                        <select id="possuiAcessoPermanente" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <!-- Animais e doenças -->
+                    <div class="form-group">
+                        <label for="possuiCachorro">Possui Cachorro (Quantidade) *</label>
+                        <input type="number" id="possuiCachorro" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiGato">Possui Gato (Quantidade) *</label>
+                        <input type="number" id="possuiGato" min="0" required aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiRoedores">Possui Roedores *</label>
+                        <select id="possuiRoedores" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiMalaria">Possui Malária *</label>
+                        <select id="possuiMalaria" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiDengue">Possui Dengue *</label>
+                        <select id="possuiDengue" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiEsquistossomose">Possui Esquistossomose *</label>
+                        <select id="possuiEsquistossomose" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiLeishmaniose">Possui Leishmaniose *</label>
+                        <select id="possuiLeishmaniose" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiFebreMaculosa">Possui Febre Maculosa *</label>
+                        <select id="possuiFebreMaculosa" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiPeste">Possui Peste *</label>
+                        <select id="possuiPeste" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiChagas">Possui Chagas *</label>
+                        <select id="possuiChagas" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="possuiFebreAmarela">Possui Febre Amarela *</label>
+                        <select id="possuiFebreAmarela" required>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                    </div>
+
+                    <!-- Coordenadas e distância -->
+                    <div class="form-group">
+                        <label for="longitude">Longitude (ex: -45.1234)</label>
+                        <input type="text" id="longitude" placeholder="Ex: -45.1234" />
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude (ex: -22.9876)</label>
+                        <input type="text" id="latitude" placeholder="Ex: -22.9876" />
+                    </div>
+                    <div class="form-group">
+                        <label for="altitude">Altitude (Metros)</label>
+                        <input type="number" id="altitude" min="0" step="0.1" placeholder="Ex: 850.5" />
+                    </div>
+                    <div class="form-group">
+                        <label for="distanciaCentro">Distância do Centro (Metros)</label>
+                        <input type="number" id="distanciaCentro" min="0" step="0.1" placeholder="Ex: 1500.5" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Cadastrar Localidade</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Seção de relatório -->
+        <section id="consultarRelatorioSection" class="form-section hidden">
+            <h2>Relatório de Localidades</h2>
+            <div id="relatorio"></div>
+        </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

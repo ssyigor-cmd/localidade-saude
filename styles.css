@@ -1,0 +1,235 @@
+/* ===== Reset e Variáveis ===== */
+:root {
+    --primary: #3483fa;
+    --primary-hover: #1d6aa9;
+    --background: #f0f2f5;
+    --card-bg: #ffffff;
+    --text: #333333;
+    --border: #cccccc;
+    --success: #28a745;
+    --error: #dc3545;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --radius: 6px;
+    --transition: 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* ===== Cabeçalho ===== */
+header h1 {
+    background: var(--primary);
+    color: #fff;
+    padding: 20px;
+    border-radius: var(--radius);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+h2 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 10px;
+    margin: 20px 0;
+}
+
+/* ===== Mensagem de feedback ===== */
+#mensagem {
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: none;
+}
+#mensagem.sucesso {
+    display: block;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+#mensagem.erro {
+    display: block;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+#mensagem.hidden {
+    display: none;
+}
+
+/* ===== Botões ===== */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), transform 0.1s;
+    font-size: 14px;
+    flex: 0 1 auto;
+}
+.btn:hover {
+    background: var(--primary-hover);
+}
+.btn:active {
+    transform: scale(0.96);
+}
+.btn-reset {
+    background: #6c757d;
+}
+.btn-reset:hover {
+    background: #5a6268;
+}
+.btn-primary {
+    background: var(--primary);
+    padding: 12px 30px;
+    font-size: 16px;
+    margin-top: 10px;
+    align-self: center;
+}
+
+/* ===== Formulários ===== */
+.form-section {
+    margin-top: 20px;
+}
+.form-section.hidden {
+    display: none;
+}
+
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: var(--primary);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color var(--transition);
+    background: #fff;
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.2);
+}
+
+.form-group input:invalid,
+.form-group select:invalid {
+    border-color: var(--error);
+}
+
+/* ===== Relatório ===== */
+#relatorio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.localidade-card {
+    background: #f8f9fa;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px;
+    box-shadow: var(--shadow);
+}
+.localidade-card p {
+    margin: 4px 0;
+}
+.localidade-card strong {
+    display: inline-block;
+    min-width: 180px;
+    color: var(--primary);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn {
+        text-align: center;
+        flex: 1;
+    }
+    .form-group input,
+    .form-group select {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    .localidade-card strong {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 1.4rem;
+        padding: 15px;
+    }
+    fieldset {
+        padding: 12px;
+    }
+}
